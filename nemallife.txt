@@ -1,0 +1,104 @@
+import sys
+import time
+from PyQt4 import QtGui,QtCore
+from PyQt4.QtGui import * 
+from PyQt4.QtCore import *
+
+ 
+
+class Start(QtGui.QMainWindow):
+    
+    def __init__(self, parent=None):
+        super(Start, self).__init__()
+        print("i")
+        b1p=b3p=False
+        b2p=True
+        i=1
+        self.setGeometry(1000,1000,50,50)
+        self.setWindowTitle('GUI')
+        
+        
+        self.btna = QtGui.QPushButton("Original", self)
+        self.btna.resize(self.btna.sizeHint())
+        self.btna.move(0,0)
+        self.btna.clicked.connect(self.pic1)
+        
+        self.btnb = QtGui.QPushButton("Detected", self)
+        self.btnb.resize(self.btnb.sizeHint())
+        self.btnb.move(200,0)
+        self.btnb.clicked.connect(self.pic2)
+        
+        self.btn1 = QtGui.QPushButton("Previous", self)
+        self.btn1.resize(self.btn1.sizeHint())
+        self.btn1.move(450,800)
+        
+        self.btn3 = QtGui.QPushButton("Exit", self)
+        self.btn3.resize(self.btn3.sizeHint())
+        self.btn3.move(750,800)
+       
+        self.btn2 = QtGui.QPushButton("Next", self)
+        self.btn2.resize(self.btn2.sizeHint())
+        self.btn2.move(600,800)
+        
+        self.btn3 = QtGui.QPushButton("Yes", self)
+        self.btn3.resize(self.btn3.sizeHint())
+        self.btn3.move(900,800)
+        
+        self.btn4 = QtGui.QPushButton("No", self)
+        self.btn4.resize(self.btn4.sizeHint())
+        self.btn4.move(1000,800)
+        
+        print("o")
+        while b3p!=True:
+            print("p")
+            while b1p!=True and b2p!=True:
+                    QCoreApplication.processEvents()
+                    if b2p==True:
+                        print("l")
+                        self.picAll(i+1)
+                    if b1p==True:
+                        print("m")
+                        self.picAll(i-1)
+                        
+        if b3p==True:
+                sys.exit()
+        
+        self.show()
+        
+        
+    def pic1(self):
+            pic = QtGui.QLabel(self)
+            pic.setPixmap(QtGui.QPixmap(r"C:\Users\Shalini\Documents\pic2.png"))
+            pic.move(400,-200)
+            pic.resize(1000,1000)
+            pic.show()
+        
+        
+        
+    def pic2(self):
+            pic = QtGui.QLabel(self)
+            pic.setPixmap(QtGui.QPixmap(r"C:\Users\Shalini\Documents\pic1.png"))
+            pic.move(1000,-200)
+            pic.resize(1000,1000)
+            pic.show()
+        
+        
+        
+    def picAll(self,i):
+                print("Helo")
+                pic = QtGui.QLabel(self)
+                pic.setPixmap(QtGui.QPixmap(r"C:\Users\Shalini\Documents\pic"+str(i)+".png"))
+                pic.move(400,100)
+                pic.resize(1000,1000)
+                pic.show()
+        
+        
+        
+def main():
+
+    app = QtGui.QApplication(sys.argv)
+    w = Start()
+    app.exec_()
+    
+if __name__=='__main__':
+    main()
